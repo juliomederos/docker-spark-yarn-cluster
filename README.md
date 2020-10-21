@@ -2,28 +2,16 @@
 
 ## docker-spark-yarn-cluster 
 This application allows to deploy multi-nodes hadoop cluster with spark 3.0.0 on yarn. 
+In has been developed to be run on Linux. Some parts may differ in other OS.
 
-## Setup
+# Setup
 - Clone the repo 
 - cd inside ../docker-spark-yarn-cluster 
 - Follow the next instructions
 
-## Run docker-compose
+## Prerequisites
 
-``` bash
-docker-compose build
-docker-compose up -d
-```
-
-## Stop
-
-``` bash
-docker-compose down
-```
-
-## Setup 
-
-On Linux machines add ip addresses to "/etc/hosts":
+- Add ip addresses to "/etc/hosts":
 
 ```
 10.7.0.2 mycluster-master
@@ -31,13 +19,44 @@ On Linux machines add ip addresses to "/etc/hosts":
 10.7.0.4 mycluster-slave-2
 ```
 
-Ssh access:
+- [OPTIONAL] Check if the user running this application has a public key
+
+This is intended to access nodes with ssh, if you only want to access with docker this step is not necesary.
+
+```bash
+cat ~/.ssh/id_rsa
+```
+
+If not exists, generate it:
+
+``` bash
+ ssh-keygen -o
+```
+
+## Setup
+
+- Run docker-compose to **start the application**
+
+``` bash
+docker-compose build
+docker-compose up -d
+```
+
+- [OPTIONAL] **Stop the application** :
+
+``` bash
+docker-compose down
+```
+
+- [OPTIONAL] **SSH** access:
+
+This is intended to access nodes with ssh, if you only want to access with docker this step is not necesary.
 
 ``` bash
 sh setup_ssh_access_root.sh
 ```
 
-# Access
+## Access
 
 - Docker
     ```bash 
